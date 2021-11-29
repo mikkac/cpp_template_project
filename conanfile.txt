@@ -1,9 +1,9 @@
 [requires]
-zeromq/4.3.4
+cppzmq/4.8.1
 cli11/2.1.1
 spdlog/1.9.2
 fmt/8.0.1
-capnproto/0.9.1
+protobuf/3.17.1
 cpptoml/0.1.1
 
 [generators]

@@ -32,7 +32,7 @@ set(CPP_EX_INC
 
 add_library(${CPP_EX} ${CPP_EX_SRC} ${CPP_EX_INC})
 target_include_directories(${CPP_EX} PUBLIC inc)
-target_link_libraries(${CPP_EX} CONAN_PKG::spdlog) 
+target_link_libraries(${CPP_EX} CONAN_PKG::spdlog CONAN_PKG::cppzmq) 
 
 add_executable(${PROJECT_NAME} main.cpp)
-target_link_libraries(${PROJECT_NAME}  CONAN_PKG::zeromq CONAN_PKG::cli11 CONAN_PKG::spdlog CONAN_PKG::fmt CONAN_PKG::capnproto CONAN_PKG::cpptoml ${CPP_EX})
+target_link_libraries(${PROJECT_NAME} CONAN_PKG::cpptoml CONAN_PKG::cli11 CONAN_PKG::protobuf ${CPP_EX})
