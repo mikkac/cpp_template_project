@@ -16,23 +16,5 @@ endif()
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
 
-include_directories(inc)
-
-set(CPP_EX "CPP_EX")
-
-set(CPP_EX_SRC
-	src/client.cpp
-	src/server.cpp
-	)
-
-set(CPP_EX_INC
-	inc/client.hpp
-	inc/server.hpp
-	)
-
-add_library(${CPP_EX} ${CPP_EX_SRC} ${CPP_EX_INC})
-target_include_directories(${CPP_EX} PUBLIC inc)
-target_link_libraries(${CPP_EX} CONAN_PKG::spdlog CONAN_PKG::cppzmq) 
-
-add_executable(${PROJECT_NAME} main.cpp)
-target_link_libraries(${PROJECT_NAME} CONAN_PKG::cpptoml CONAN_PKG::cli11 CONAN_PKG::protobuf ${CPP_EX})
+add_subdirectory(proto)
+add_subdirectory(app)

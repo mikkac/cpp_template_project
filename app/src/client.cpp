@@ -7,6 +7,8 @@
 
 #include "spdlog/spdlog.h"
 
+#include "message.pb.h"
+
 // Taken from ZMQ docs examples
 namespace example {
 void runClient(std::string_view name, int port) {
