@@ -1,12 +1,10 @@
-#include <unistd.h>
+#include "server.hpp"
 
-#include <iostream>
 #include <thread>
 
-#include "client.hpp"
 #include "spdlog/spdlog.h"
+#include "utils.hpp"
 
-// Taken from ZMQ docs examples
 namespace example {
 void runServer(std::string_view name, int port) {
     //  Prepare our context and socket
@@ -16,21 +14,17 @@ void runServer(std::string_view name, int port) {
 
     while (true) {
         zmq::message_t request;
-
-        //  Wait for next request from client
         auto _{socket.recv(request, zmq::recv_flags::none)};
-        spdlog::info(
-            "Received request: {}",
-            std::string(static_cast<char*>(request.data()), request.size()));
-        //  Do some 'work'
+        const auto decoded_request{example::decodeMessage(request)};
+        spdlog::info("Received request: {}, {}, {}, {}", decoded_request.id(),
+                     decoded_request.source(), decoded_request.target(),
+                     decoded_request.content());
+
         std::this_thread::sleep_for(std::chrono::milliseconds(50));
 
-        //  Send reply back to client
-        std::string reply_str{"reply"};
-        zmq::message_t reply(reply_str.length());
-        memcpy(reply.data(), reply_str.data(), reply_str.length());
-        socket.send(reply, zmq::send_flags::none);
-        spdlog::info("Sending reply: {}", reply_str);
+        Message reply;
+        reply.set_content("OK");
+        socket.send(example::encodeMessage(reply), zmq::send_flags::none);
     }
 }
 }  // namespace example
