@@ -1,5 +1,4 @@
 #include <iostream>
-#include <source_location>
 #include <thread>
 #include <vector>
 
@@ -11,10 +10,6 @@
 #include "spdlog/spdlog.h"
 
 int main(int argc, char** argv) {
-    const std::source_location loc = std::source_location::current();
-    spdlog::debug("C++20 feature check: {}({}:{}) {}", loc.file_name(),
-                  loc.line(), loc.column(), loc.function_name());
-
     CLI::App app(
         "Example application using great libraries fetched with conan. If no "
         "cmd params are given, TOML config is read from main repo directory");
