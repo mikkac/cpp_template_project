@@ -12,9 +12,16 @@ if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
        add_compile_options (-fcolor-diagnostics)
 endif()
 
+set(CPP_EX_LIB "cpp_ex_lib")
+set(PROTO_LIB "proto_lib")
+
 # Take care of conan
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
 
 add_subdirectory(proto)
 add_subdirectory(app)
+
+
+enable_testing()
+add_subdirectory(unittests)

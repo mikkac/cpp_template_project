@@ -1,15 +1,15 @@
 include_directories(inc)
 
-set(CPP_EX_LIB "cpp_ex_lib")
-
 set(CPP_EX_LIB_SRC
 	${CMAKE_CURRENT_SOURCE_DIR}/src/client.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/src/server.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/utils.cpp
 )
 
 set(CPP_EX_LIB_INC
 	${CMAKE_CURRENT_SOURCE_DIR}/inc/client.hpp
 	${CMAKE_CURRENT_SOURCE_DIR}/inc/server.hpp
+	${CMAKE_CURRENT_SOURCE_DIR}/inc/utils.hpp
 )
 
 add_library(${CPP_EX_LIB} ${CPP_EX_LIB_SRC} ${CPP_EX_LIB_INC})
