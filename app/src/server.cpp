@@ -16,9 +16,9 @@ void runServer(std::string_view name, int port) {
         zmq::message_t request;
         auto _{socket.recv(request, zmq::recv_flags::none)};
         const auto decoded_request{example::decodeMessage(request)};
-        spdlog::info("Received request: {}, {}, {}, {}", decoded_request.id(),
-                     decoded_request.source(), decoded_request.target(),
-                     decoded_request.content());
+        spdlog::info("{} received request: {}, {}, {}, {}", name,
+                     decoded_request.id(), decoded_request.source(),
+                     decoded_request.target(), decoded_request.content());
 
         std::this_thread::sleep_for(std::chrono::milliseconds(50));
 

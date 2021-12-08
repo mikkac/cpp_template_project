@@ -4,7 +4,7 @@ cli11/2.1.1
 spdlog/1.9.2
 fmt/8.0.1
 protobuf/3.17.1
-cpptoml/0.1.1
+tomlplusplus/2.5.0
 catch2/2.13.7
 
 [generators]

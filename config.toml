@@ -1,0 +1,8 @@
+[client]
+num_of_clients = 3
+name_prefix = "Client_"
+port = 5050
+
+[server]
+name = "Server"
+port = 5050
